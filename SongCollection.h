@@ -8,9 +8,6 @@
 
 class SongCollection
 {
-private:
-	int numSongs; // number of songs in dataset
-
 public:
 	
 	void importSongs(); // Read in all files from CSV
