@@ -12,12 +12,7 @@ private:
 	int numSongs; // number of songs in dataset
 
 public:
-	SongCollection(); // Default Constructor
-	SongCollection(vector<Song> songs);
-	vector<Song> songs; // Vector that contains all songs in dataset
-	vector<Song> recommended1; // Vector that output recommended song
-	vector<Song> recommended2; // Vector that output recommended song, used for comparison of methods.
-
+	
 	void importSongs(); // Read in all files from CSV
 
 	void quickSort(string attribute, int low, int high); // Quick Sort 
