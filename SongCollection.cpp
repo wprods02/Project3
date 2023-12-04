@@ -100,11 +100,6 @@ void SongCollection::heapSort(string attribute)
 
 }
 
-int SongCollection::getNumSongs()
-{
-	return numSongs;
-}
-
 // Test if worked
 void SongCollection::testPrint(string attribute)
 {
