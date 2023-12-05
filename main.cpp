@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include "song.h"
 #include "songs.h"
+#include "hash.h"
 
 using namespace std;
 
@@ -79,47 +80,72 @@ int main() {
     string playlistString = "";
     Songs songList;
     vector<Song> allSongs;
+    Hash songHash;
 
     parseFile("./Songs100k.txt", songList, allSongs);
 
+    /*ADD SONGS TO DATA STRUCTURES*/
+    cout << "Adding Songs To Data Structures" << endl;
 
-    cout << "What song are you searching for?:  ";
+    //ADDING SONGS TO HASHMAP
+    auto start = std::chrono::steady_clock::now();
+    for (int i = 0; i < allSongs.size(); ++i) {
+        songHash.AddSong(allSongs[i]);
+    }
+    auto stop = std::chrono::steady_clock::now();
+    std::chrono::duration<double>  duration = stop - start;
+    cout << "Time taken to add song data to hash map: " << to_string(duration.count()) << " ms\n";
+
+    //ADDING SONGS TO TREE
+    start = std::chrono::steady_clock::now();
+    //add songs to tree here
+    stop = std::chrono::steady_clock::now();
+    duration = stop - start;
+    cout << "Time taken to add song data to tree: " << to_string(duration.count()) << " ms\n";
+
+
+    /*Inputting Song to Search*/
+    cout << "What song are you searching for?: ";
 
     getline(cin, search);
     cout << "Who is the artist?:  ";
 
     getline(cin, artist);
 
-    //1) SEARCHING FOR SONG
+    /*Searching For Inputted Song In Data Structures*/
     Song* searchedSong;
-    cout << "Finding songs similar to: " + search + "...\n";
+    cout << "-------------------------------------------\n";
 
-    // THIS PART MUST BE REPLACED BY SEARCHING DATA STRUCTURES
-    for (int i = 0; i < allSongs.size(); ++i) {
+   for (int i = 0; i < allSongs.size(); ++i) {
         if (allSongs[i].name == search && allSongs[i].artists == artist){
             searchedSong = &allSongs[i];
             break;
         }
     }
-    // Heap Sort 
-    // auto start1 = high_resolution_clock::now();
-	// songs.heapSort("Difference");
-	// auto stop1 = high_resolution_clock::now();
-	// auto dur1 = duration_cast<milliseconds>(stop1 - start1);
-	// cout << "The HeapSort took: " << dur1.count() << " milliseconds" << endl; 
-    
-    // *******************************************************
 
+   //FINDING SONG IN HASH MAP
+    start = std::chrono::steady_clock::now();
+    songHash.FindSong(search, artist);
+    stop = std::chrono::steady_clock::now();
+    duration = stop - start;
+    cout << "Time taken to find song in hash map: " << to_string(duration.count()) << " ms\n";
 
-    cout << "Found " << searchedSong->name << " by " << searchedSong->artists << "." << endl;
+    //FINDING SONG IN TREE
+    start = std::chrono::steady_clock::now();
+    //find song in tree
+    stop = std::chrono::steady_clock::now();
+    duration = stop - start;
+    cout << "Time taken to find song in tree: " << to_string(duration.count()) << " ms\n";
 
-    //2) CREATING PLAYLIST OF SIMILAR SONGS
+    /*CREATING PLAYLIST OF SIMILAR SONGS*/
     vector<Song> temp = songList.FindSimilar(*searchedSong);
 
-    for (int i = 0; i < temp.size(); ++i) {
+    cout << "Playlist for: " << temp[0].name << " by: " << temp[0].artists << endl;
+    cout << "-------------------------------------------\n";
+
+    for (int i = 1; i < temp.size(); ++i) {
         playlistString += temp[i].name + " by: " + temp[i].artists+ "\n";
     }
-
     cout << playlistString << endl;
 
     return 0;

@@ -80,7 +80,7 @@ vector<Song> Songs::FindSimilar(const Song& searchSong) {
                   return lhs.first < rhs.first;
               });
 
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 11; ++i)
         results.push_back(rankings[i].second);
 
     return results;
