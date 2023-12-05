@@ -101,6 +101,13 @@ int main() {
             break;
         }
     }
+    // Heap Sort 
+    // auto start1 = high_resolution_clock::now();
+	// songs.heapSort("Difference");
+	// auto stop1 = high_resolution_clock::now();
+	// auto dur1 = duration_cast<milliseconds>(stop1 - start1);
+	// cout << "The HeapSort took: " << dur1.count() << " milliseconds" << endl; 
+    
     // *******************************************************
 
 
