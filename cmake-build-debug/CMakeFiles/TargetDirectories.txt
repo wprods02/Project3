@@ -1,0 +1,3 @@
+C:/Users/Trent/Desktop/project3master/cmake-build-debug/CMakeFiles/project3master.dir
+C:/Users/Trent/Desktop/project3master/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Trent/Desktop/project3master/cmake-build-debug/CMakeFiles/rebuild_cache.dir
