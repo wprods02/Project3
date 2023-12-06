@@ -15,8 +15,6 @@ def get_recommendations():
         return jsonify({"error": "Song and artist are required."}), 400
 
     try:
-        # Assuming your compiled C++ program is named 'song_recommender'
-        # and it's in the same directory as your Flask app
         result = subprocess.run(['./main.exe', song, artist], capture_output=True, text=True)
         if result.returncode != 0:
             raise Exception(result.stderr)
