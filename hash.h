@@ -26,7 +26,7 @@ public:
     int NumberOfItemsInIndex(int index);
     void PrintTable();
     void PrintItemsInIndex(int index);
-    void FindSong(string name, string artist);
+    Song* FindSong(string name, string artist);
     void RemoveItem(string title);
     int count = 0;
 };
@@ -80,30 +80,14 @@ int Hash::hash(string key) {
 }
 
 
-void Hash::FindSong(string name, string artist)
-{
+Song* Hash::FindSong(string name, string artist) {
     int index = hash(name);
-    bool foundName = false;
-    Song song;
-
     songStruct* Ptr = hashMap[index];
     while (Ptr != nullptr) {
-
-        if(Ptr->song.name == name && Ptr->song.artists == artist) {
-
-            foundName = true;
-            song = Ptr->song;
+        if (Ptr->song.name == name && Ptr->song.artists == artist) {
+            return &(Ptr->song); // Return the address of the found song
         }
-
         Ptr = Ptr->next;
     }
-
-    if(foundName == true)
-    {
-        cout << "Hash Map has found " << song.name << " by " << song.artists << ":" << endl;
-    }
-    else
-    {
-        cout << name << "'s information was not found in the Hash Table\n";
-    }
+    return nullptr; // Return nullptr if not found
 }

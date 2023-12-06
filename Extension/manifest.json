@@ -1,0 +1,37 @@
+{
+    "name": "Project 3 Extension",
+    "version": "0.0.0.1",
+    "description": "Development",
+    "permissions": ["storage", "activeTab", "tabs", "scripting", "clipboardRead", "clipboardWrite"],
+    "host_permissions": ["<all_urls>"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["contentScript.js"]
+      }
+    ],
+    "icons": {
+      "16": "assets/icon.png",
+      "24": "assets/icon.png",
+      "32": "assets/icon.png",
+      "48": "assets/icon.png",
+      "64": "assets/icon.png",
+      "128": "assets/icon.png"
+    },
+    "action": {
+      "default_icon": {
+        "16": "assets/icon.png",
+        "24": "assets/icon.png",
+        "32": "assets/icon.png",
+        "48": "assets/icon.png",
+        "64": "assets/icon.png",
+        "128": "assets/icon.png"
+      },
+      "default_title": "Popup",
+      "default_popup": "popup.html"
+    },
+    "manifest_version": 3
+}

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Project3 GUI </title>
+<link rel="stylesheet" href="./assets/css/style.css">
+<link rel="stylesheet" href="./assets/css/button.css">
+<!-- <link rel="stylesheet" href="./searchBar.css"> -->
+<link rel="stylesheet" href="./assets/css/carousel.css">
+<link rel="stylesheet" href="./assets/css/card.css">
+<link rel="stylesheet" href="assets/css/newSearchBar.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
+
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="phone_wrapper">
+  <header>
+    <div class="speaker">
+      <div class="mic"></div>
+    </div>
+    <nav>
+      <div class="tab tab1 active">
+        <div class="block selectedTab" id="homeTab">
+          <!-- <i class="fa-regular fa-house" style="color: #07051a;"></i> -->
+          <span>Home</span>
+        </div>
+      </div>
+      <div class="tab tab2">
+        <div class="block" id="savedTab">
+          <span>Saved</span>
+        </div>
+      </div>
+      <div class="indicator"></div>
+    </nav>
+  </header>
+  <main>
+    <div class="tab_reel">
+      <div class="tab_panel1">
+
+        <div class="output" id="output">
+          <div class="closeOutput">
+            <i class="fa-regular fa-xmark" id="closeOutput" style="color: #84abf1;"></i>
+          </div>
+          <div class="recText">
+            <span>Recommendations</span>
+         </div>
+         <div class="recommendationList scroll scroll-1" id="results">
+            
+         </div>
+        </div>
+
+        <div class="searchText">
+          <h2><span>Search</span></h2>
+        </div>
+
+      <form action="#" id="header-search-people" class="form-area" novalidate="novalidate" autocomplete="off">
+
+
+          <div class="styled-input wide multi">
+              <div class="first-name" id="input-first-name">
+                  <input type="text" name="fn" id="fn" autocomplete="off" data-placeholder-focus="false" required />
+                  <label>Song name</label>
+                  <svg class="icon--check" width="21px" height="17px" viewBox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+                          <g id="UI-Elements-Forms" transform="translate(-255.000000, -746.000000)" fill-rule="nonzero" stroke="#81B44C" stroke-width="3">
+                              <polyline id="Path-2" points="257 754.064225 263.505943 760.733489 273.634603 748"></polyline>
+                          </g>
+                      </g>
+                  </svg>
+                  <svg class="icon--error" width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+                          <g id="UI-Elements-Forms" transform="translate(-550.000000, -747.000000)" fill-rule="nonzero" stroke="#D0021B" stroke-width="3">
+                              <g id="Group" transform="translate(552.000000, 749.000000)">
+                                  <path d="M0,11.1298982 L11.1298982,-5.68434189e-14" id="Path-2-Copy"></path>
+                                  <path d="M0,11.1298982 L11.1298982,-5.68434189e-14" id="Path-2-Copy-2" transform="translate(5.564949, 5.564949) scale(-1, 1) translate(-5.564949, -5.564949) "></path>
+                              </g>
+                          </g>
+                      </g>
+                  </svg>
+              </div>
+              <div class="last-name" id="input-last-name">
+                  <input type="text" name="ln" id="ln" autocomplete="off" data-placeholder-focus="false" required />
+                  <label>artist</label>
+                  <svg class="icon--check" width="21px" height="17px" viewBox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+                          <g id="UI-Elements-Forms" transform="translate(-255.000000, -746.000000)" fill-rule="nonzero" stroke="#81B44C" stroke-width="3">
+                              <polyline id="Path-2" points="257 754.064225 263.505943 760.733489 273.634603 748"></polyline>
+                          </g>
+                      </g>
+                  </svg>
+                  <svg class="icon--error" width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+                          <g id="UI-Elements-Forms" transform="translate(-550.000000, -747.000000)" fill-rule="nonzero" stroke="#D0021B" stroke-width="3">
+                              <g id="Group" transform="translate(552.000000, 749.000000)">
+                                  <path d="M0,11.1298982 L11.1298982,-5.68434189e-14" id="Path-2-Copy"></path>
+                                  <path d="M0,11.1298982 L11.1298982,-5.68434189e-14" id="Path-2-Copy-2" transform="translate(5.564949, 5.564949) scale(-1, 1) translate(-5.564949, -5.564949) "></path>
+                              </g>
+                          </g>
+                      </g>
+                  </svg>
+              </div>
+
+  
+          </div>
+
+
+
+      </form>
+
+      <div class="recent">
+        <h2><span>Recent</span></h2>
+      </div>
+
+
+      <div class="slider">
+        <div class="slide-track">
+          <div class="slide">
+            <div class="songContainer">
+ 
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+                
+              </div>
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+  
+
+            
+            </div>
+            
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+          <div class="slide">
+            <div class="songContainer">
+      
+              <div class="box">
+                <img src="https://i1.sndcdn.com/artworks-000208429549-3q7s9d-t500x500.jpg" alt="">
+              </div>
+            
+            
+              <div class="content">
+                <h1>Alone</h1>
+                <p>Alan Walker</p>
+                <div class="control">
+                  <a href="#"><i class="fa-solid  fa-file-word" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-brands  fa-youtube" style="color: #ffffff; font-size: 18px;"></i></a>
+                  <a href="#"><i class="fa-solid  fa-cloud-music" style="color: #ffffff; font-size: 18px;"></i></a>
+                </div>
+              </div>
+            
+              <div class="saveThis"> 
+                <a href="#"><i class="fa-light fa-heart" style="color: #ffffff; font-size: 18px;"></i></a>
+                <!-- <i class="fa-solid fa-heart" style="color: #ffffff;"></i> -->
+              </div>
+            
+            </div>		
+          </div>
+      
+        </div>
+      </div>
+
+
+
+
+        <div class="gen">
+          <button type="submit" id="submitForm" class="button" id="getRecommendation">
+            <span class="button__text">Find Recommendations</span>
+        </button>
+        </div>
+
+      </div>
+      <div class="tab_panel2">
+        <div class="card card_list">
+          <figure></figure>
+          <div class="desc">
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+        </div>
+        <div class="card card_list">
+          <figure></figure>
+          <div class="desc">
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+        </div>
+        <div class="card card_list">
+          <figure></figure>
+          <div class="desc">
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<!-- partial -->
+  <script  src="./assets/js/script.js"></script>
+  <script src="./assets/js/search.js"></script>
+  <script src='./assets/js/jquery.js'></script>
+  <script  src="assets/js/newSearchBar.js"></script>
+</body>
+</html>

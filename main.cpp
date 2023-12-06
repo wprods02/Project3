@@ -7,6 +7,8 @@
 #include "song.h"
 #include "songs.h"
 #include "hash.h"
+#include "json.hpp"
+using json = nlohmann::json;
 
 using namespace std;
 
@@ -74,75 +76,55 @@ void parseFile(const std::string& filename, Songs &songList, vector<Song>& allSo
     }
 }
 
-int main() {
-    string search = "";
-    string artist = "";
-    string playlistString = "";
+int main(int argc, char* argv[]) {
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0] << " <song> <artist>" << std::endl;
+        return 1;
+    }
+
+    // Accept song and artist from command line arguments
+    std::string search = argv[1];
+    std::string artist = argv[2];
+
+    // Initialize necessary data structures
     Songs songList;
-    vector<Song> allSongs;
-    vector<Song> songsWithTitle;
+    std::vector<Song> allSongs;
+    std::vector<Song> songsWithTitle;
     Hash songHash;
 
-    //ADDING SONGS TO HASHMAP & Vector
+    // Parse the song file and populate data structures
     parseFile("./Songs100k.txt", songList, allSongs);
 
-    auto start = std::chrono::steady_clock::now();
     for (int i = 0; i < allSongs.size(); ++i) {
         songHash.AddSong(allSongs[i]);
     }
-    auto stop = std::chrono::steady_clock::now();
-    std::chrono::duration<double>  duration = stop - start;
-    start = std::chrono::steady_clock::now();
-    stop = std::chrono::steady_clock::now();
-    duration = stop - start;
 
-
-    /*Inputting Song to Search*/
-    cout << "What song are you searching for?: ";
-
-    getline(cin, search);
-    cout << "Who is the artist?:  ";
-
-    getline(cin, artist);
-
-    /*Searching For Inputted Song In Data Structures*/
-    Song* searchedSong;
-    cout << "-------------------------------------------\n";
-
-   //FINDING SONG WITH HASH ALGORITHM
-    start = std::chrono::steady_clock::now();
-    songHash.FindSong(search, artist);
-    stop = std::chrono::steady_clock::now();
-    duration = stop - start;
-    cout << "Time taken to find song in hash map: " << to_string(duration.count()) << " ms\n";
-
-    //FINDING SONG WITH QUADRATIC ALGORITHM
-    start = std::chrono::steady_clock::now();
-    for (int i = 0; i < allSongs.size(); ++i) {
-        if (allSongs[i].name == search){
-            songsWithTitle.push_back(allSongs[i]);
-        }
-        for (int j = 0; j < songsWithTitle.size(); ++j) {
-            if (songsWithTitle[j].artists == artist){
-                searchedSong = &songsWithTitle[j];
-            }
-        }
+    // Find the song using the hash algorithm
+    Song* searchedSong = songHash.FindSong(search, artist);
+    if (searchedSong == nullptr) {
+        std::cerr << "Song not found." << std::endl;
+        return 1;
     }
-    stop = std::chrono::steady_clock::now();
-    duration = stop - start;
-    cout << "Time taken to find song with O(n^2) algorithm: " << to_string(duration.count()) << " ms\n";
 
-    /*CREATING PLAYLIST OF SIMILAR SONGS*/
-    vector<Song> temp = songList.FindSimilar(*searchedSong);
+    // Create playlist of similar songs
+    std::vector<Song> similarSongs = songList.FindSimilar(*searchedSong);
 
-    cout << "Playlist for: " << temp[0].name << " by: " << temp[0].artists << endl;
-    cout << "-------------------------------------------\n";
+    // Prepare JSON output
+    json output;
+    output["searchedSong"]["title"] = search;
+    output["searchedSong"]["artist"] = artist;
+    output["recommendations"] = json::array();
 
-    for (int i = 1; i < temp.size(); ++i) {
-        playlistString += temp[i].name + " by: " + temp[i].artists+ "\n";
+    for (const Song& song : similarSongs) {
+        json songJson;
+        songJson["title"] = song.name;
+        songJson["artist"] = song.artists;
+        // Include other song attributes if necessary
+        output["recommendations"].push_back(songJson);
     }
-    cout << playlistString << endl;
+
+    // Output the JSON string
+    std::cout << output.dump(4) << std::endl; // The '4' here is for pretty-printing
 
     return 0;
 }
-
